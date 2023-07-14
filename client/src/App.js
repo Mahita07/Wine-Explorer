@@ -12,9 +12,9 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route exact path = "signup" element={<Signup />}/>
-        <Route exact path = "login" element={<Login />}/>
-        <Route exact path="home" element = {<Home/>}/>
+        <Route exact path = "/auth/signup" element={<Signup />}/>
+        <Route exact path = "/auth/login" element={<Login />}/>
+        <Route exact path="/" element = {<Home/>}/>
       </Routes>
     </Router>
     </>

@@ -6,7 +6,7 @@ import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
-router.post("/register", async (req,res) =>{
+router.post("/signup", async (req,res) =>{
     const {username, password} = req.body;
     const user = await UserModel.findOne({username});
     if(user){
@@ -21,6 +21,7 @@ router.post("/register", async (req,res) =>{
 router.post("/login", async (req,res) =>{
     const {username , password} = req.body;
     const user = await UserModel.findOne({username});
+    console.log('Until this part ok');
     if(!user){
         res.json({message: "No user with entered credentials exists."});
     }

@@ -23,9 +23,9 @@ export const Login = () => {
           const response = await axios.post("http://localhost:3001/auth/login", 
             {username,password});
             console.log(response);
-          setCookies(["accessToken",response.data.token]);
-          window.localStorage.setItem("accessToken",response.data.token);
-          navigate('/home');
+            setCookies(["accessToken",response.data.token]);
+            window.localStorage.setItem("accessToken",response.data.token);
+            navigate('/home');
         }
         catch(err){
             console.log(err); 
