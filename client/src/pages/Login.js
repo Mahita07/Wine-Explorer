@@ -20,12 +20,12 @@ export const Login = () => {
     const onSubmit = async(event) =>{
         event.preventDefault();
         try{
-          const response = await axios.post("http://localhost:3001/auth/login", 
+          const response = await axios.post("http://localhost:3001/user/login", 
             {username,password});
             console.log(response);
             setCookies(["accessToken",response.data.token]);
             window.localStorage.setItem("accessToken",response.data.token);
-            navigate('/home');
+            navigate('/user/home');
         }
         catch(err){
             console.log(err); 

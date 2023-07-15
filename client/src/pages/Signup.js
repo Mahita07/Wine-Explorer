@@ -24,10 +24,10 @@ export const Signup = () => {
         event.preventDefault();
         try{
             if(password===confirmpassword){
-              await axios.post("http://localhost:3001/auth/signup", 
+              await axios.post("http://localhost:3001/user/signup", 
               {username,password});
               alert("Sign up completed, login to continue !")
-              navigate('/auth/login')
+              navigate('/user/login')
             } 
             else{
               alert('Passwords not matching !')

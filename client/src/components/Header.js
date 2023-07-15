@@ -5,20 +5,23 @@ export const Header = () => {
   const navigate = useNavigate();
   const [cookies,setCookies] = useCookies("");
   const handleSignup = () =>{
-    navigate('auth/signup');
+    navigate('user/signup');
   }
   const handleLogin = () =>{
-    navigate('auth/login');
+    navigate('user/login');
   }
   const handleLogout = () =>{
     window.localStorage.removeItem("accessToken");
-    navigate('auth/home');
+    navigate('user/home');
+  }
+  const goBackHome = () =>{
+    navigate('user/home');
   }
   return (
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-    <a className="navbar-brand" href="#">Wine Explorer</a>
+    <a className="navbar-brand" onClick={goBackHome}>Wine Explorer</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
