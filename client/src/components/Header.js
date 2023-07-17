@@ -1,6 +1,7 @@
 import { Cookies } from "react-cookie";
 import {useCookies} from "react-cookie";
 import { useNavigate } from "react-router";
+
 export const Header = () => {
   const navigate = useNavigate();
   const [cookies,setCookies] = useCookies("");
@@ -8,7 +9,10 @@ export const Header = () => {
     navigate('user/signup');
   }
   const handleLogin = () =>{
-    navigate('user/login');
+    navigate('user/login')
+  }
+  const handlecreatewine = () =>{
+    navigate('wines/createwine');
   }
   const handleLogout = () =>{
     window.localStorage.removeItem("accessToken");
@@ -27,18 +31,17 @@ export const Header = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link " aria-current="page" href="#">Create New Review</a>
+      <li className="nav-item px-3">
+          {!window.localStorage.getItem("accessToken") ? (<button type="button" className="btn btn-light" onClick = {handleLogin}>Create New Wine</button>):(<button type="button" className="btn btn-light" onClick = {handlecreatewine}>Create New Wine</button>)}
         </li>
         <li className="nav-item">
           <a className="nav-link" href="#">Favourites</a>
         </li>
         <li className="nav-item px-3">
-        {console.log(!window.localStorage.getItem("accessToken"))}
+        
           <button type="button" className="btn btn-light" onClick = {handleSignup}>Sign up</button>
         </li>
         <li className="nav-item px-3">
-        {console.log(!window.localStorage.getItem("accessToken"))}
           {!window.localStorage.getItem("accessToken") ? (<button type="button" className="btn btn-light" onClick = {handleLogin}>Login</button>):(<button type="button" className="btn btn-light" onClick = {handleLogout}>Logout</button>)}
         </li>
       </ul>
