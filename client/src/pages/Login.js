@@ -25,6 +25,7 @@ export const Login = () => {
             console.log(response);
             setCookies(["accessToken",response.data.token]);
             window.localStorage.setItem("accessToken",response.data.token);
+            window.localStorage.setItem("userID",response.data.userID);
             navigate('/user/home');
         }
         catch(err){
@@ -33,7 +34,9 @@ export const Login = () => {
     }
     const onLogout = () =>{
       setCookies(["accessToken",""]);
+      setCookies(["userID",""])
       window.localStorage.setItem("accessToken","");
+      window.localStorage.setItem("userID","");
       navigate('/login');
     }
     return (

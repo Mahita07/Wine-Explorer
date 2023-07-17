@@ -4,10 +4,10 @@ const WineSchema = new mongoose.Schema({
     name:{type: String, required : true, unique: true},
     type:{type:String,required: true},
     region:{type: String, required : true},
-    grapeVarities:[{type: String,}],
-    description:{type:String},
+    grapeVarieties:[{type: String,}],
+    tastingNotes:{type:String},
     imageUrl: {type:String,required:true},
-    contributer: {type:mongoose.Schema.Types.ObjectId,ref:"users",required:true},
+    contributor: {type:mongoose.Schema.Types.ObjectId,ref:"users",required:true},
 });
 
 export const WineModel = mongoose.model("wines",WineSchema);

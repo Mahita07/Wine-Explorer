@@ -30,7 +30,7 @@ router.post("/login", async (req,res) =>{
        res.json({message: "Please login with valid username and password."});
     }
     const token = jwt.sign({id: user._id}, "winetasting");
-    res.json({token});
+    res.json({token:token,userID:user._id});
 
 });
 

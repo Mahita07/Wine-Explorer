@@ -14,7 +14,7 @@ router.get("/", async (req,res) =>{
 });
 
 //post new variety of wine
-router.post("/", async(req,res)=>{
+router.post("/createwine", async(req,res)=>{
         const wineVariety = await WineModel(req.body);
         try{
             const response = await wineVariety.save();
