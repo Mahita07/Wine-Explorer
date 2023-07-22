@@ -8,7 +8,9 @@ export const Home = () => {
         try{
           console.log(wineID,window.localStorage.getItem("userID"))
           const response = await axios.put("http://localhost:3001/wines",{wineId:wineID,userId:window.localStorage.getItem("userID")})
-          console.log(response);
+          if(typeof response.data === "string"){
+            alert("Wine already saved !");
+          }
         }
         catch(err){
           console.error(err);

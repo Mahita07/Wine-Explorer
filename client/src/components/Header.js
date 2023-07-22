@@ -1,6 +1,7 @@
 import { Cookies } from "react-cookie";
 import {useCookies} from "react-cookie";
 import { useNavigate } from "react-router";
+import {NavLink} from "react-router-dom";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const Header = () => {
   }
   const handleLogout = () =>{
     window.localStorage.removeItem("accessToken");
-    navigate('user/home');
+    navigate('/');
   }
   const goBackHome = () =>{
     navigate('user/home');
@@ -35,7 +36,7 @@ export const Header = () => {
           {!window.localStorage.getItem("accessToken") ? (<button type="button" className="btn btn-light" onClick = {handleLogin}>Create New Wine</button>):(<button type="button" className="btn btn-light" onClick = {handlecreatewine}>Create New Wine</button>)}
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Favourites</a>
+          <NavLink className="nav-link" to="user/favourites">Favourites</NavLink>
         </li>
         <li className="nav-item px-3">
         

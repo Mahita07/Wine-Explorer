@@ -64,9 +64,9 @@ router.get("/savedWines/ids", async(req,res) =>{
 })
 
 //get the saved wine documents
-router.get("/savedWines/ids", async(req,res) =>{
+router.get("/savedWines", async(req,res) =>{
     try{
-        const user = await UserModel.findById(req.body.userId);
+        const user = await UserModel.findById(req.query.userId);
         const savedWines = await WineModel.find({_id: {$in:user?.savedWines},});
         res.json({savedWines})
     }

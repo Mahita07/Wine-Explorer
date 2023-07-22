@@ -16,7 +16,11 @@ function App() {
         <Route exact path = "/user/signup" element={<Signup />}/>
         <Route exact path = "/user/login" element={<Login />}/>
         <Route exact path = "/wines/createwine" element={<CreateWineReview/>}/>
-        <Route exact path="/" element = {<Home/>}/>
+        <Route
+          exact path="/"
+          element={!window.localStorage.getItem("accessToken") ? <Login /> : <Home />}
+        />
+        <Route exact path="/user/favourites" element = {<Favourites/>}/>
         <Route exact path='/user/home' element = {<Home/>}/>
       </Routes>
     </Router>
