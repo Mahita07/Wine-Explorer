@@ -1,6 +1,6 @@
 import express from 'express';
 import {WineModel} from '../models/Wines.js';
-
+import {UserModel} from '../models/Users.js';
 const router = express.Router();
 //get all wine varities 
 router.get("/", async (req,res) =>{
@@ -28,11 +28,23 @@ router.post("/createwine", async(req,res)=>{
 //saving a wine to favourites
 router.put("/", async(req,res) =>{
     try{
-        const wine = await WineModel(req.body.wineId);
-        const user = await UserModel(req.body.userId);
-        user.savedWines.push(wine);
-        await user.save();
-        res.json({savedWines: user.savedWines});
+        /*console.log(req.body)*/
+        const wine = await WineModel.findOne({_id:req.body.wineId});
+        /*console.log(wine)*/
+        const user = await UserModel.findOne({_id:req.body.userId});
+        /*console.log("User Found:", user);*/
+        if(!wine || !user){
+            console.log("Not found")
+        }
+        if(user.savedWines.includes(wine._id)){
+            console.log("Wine already saved !");
+            res.json("Wine already saved !");
+        }
+        else{
+            user.savedWines.push(wine);
+            await user.save();
+            res.json({savedWines: user.savedWines});
+        }    
     }
     catch(err){
         res.json(err);

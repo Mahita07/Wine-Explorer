@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +37,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.attributes{
+  /*background: linear-gradient(to bottom, #dcc2cb, #b4908f);*/
+  background-color: #B279A7;
+  /*background-image: linear-gradient(to right, #B279A7 0%, #a5a4cb 74%);*/
+  color: #FFFFFF;
+  font-family: 'Mate', serif;
+  font-size: '32px';
+  font-weight: 'normal' ;
+  height:100vh;
 }

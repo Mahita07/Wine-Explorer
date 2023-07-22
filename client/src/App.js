@@ -9,7 +9,7 @@ import {Header} from "./components/Header";
 import {First} from "./pages/First";
 function App() {
   return (
-    <>
+    <div className="attributes">
     <Router>
       <Header />
       <Routes>
@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/user/home' element = {<Home/>}/>
       </Routes>
     </Router>
-    </>
+    </div>
   );
 }
 
