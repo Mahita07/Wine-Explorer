@@ -12,9 +12,11 @@ export const Favourites = () =>{
                     },
             });
             if(response){
-                console.log(response.data.savedWines)
+                console.log(response.data.savedWines);
                 setWines(response.data.savedWines);
-                alert("Wine saved to Favourites")
+            }
+            else{
+              <div>Save wines to view them here</div>
             }
           }
           catch(err){
@@ -26,19 +28,21 @@ export const Favourites = () =>{
       if (!wines) {
         return <div>Loading...</div>; 
       }
-      else{
-          console.log(wines)
-      }
+      console.log(wines)
     return(
         <>
-        <p>Favs</p>
         <div style={{/*backgroundColor: "#d19592", backgroundImage: "linear-gradient(to right, #B279A7 0%, #a5a4cb 74%)*/ backgroundColor: "#B279A7"}}>
       <h1>Welcome to Wine Savvy</h1>
-      <div className="d-flex flex-wrap" style={{padding:"20px",justifyContent:"center" }}>
+      {wines.length==0 ? (
+        <div style={{  alignItems: "center",marginTop:"30px"}}>
+          <h4>Save wines to view them here.</h4>
+        </div>
+      ) :
+      (<div className="d-flex flex-wrap" style={{padding:"20px",justifyContent:"center" }}>
         {wines.map((wine) => (
           <Card key={wine._id} style={{width:"300px",height:"auto",margin:"20px",backgroundColor: "#BAA6D1"}}>
             <div className="d-flex justify-content-center">
-            <Card.Img variant="top" src={wine.imageUrl} style={{width:"100%",height:"200px",objectFit:"contain"}}/>
+            <Card.Img variant="top" src={wine.imageUrl} style={{width:"100%",height:"200px",objectFit:"contain",backgroundColor:"white"}}/>
             </div>
             <Card.Body>
               <Card.Title style={{fontSize:"22px",textAlign:"center",fontWeight:"bold",fontFamily:"'Vollkorn SC', serif"}}>{wine.name}</Card.Title>
@@ -50,6 +54,7 @@ export const Favourites = () =>{
           </Card>
         ))}
         </div>
+      )}
     </div>
         </>
     )

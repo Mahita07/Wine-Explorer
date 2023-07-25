@@ -23,16 +23,22 @@ export const Signup = () => {
     const onSubmit = async(event) =>{
         event.preventDefault();
         try{
-            if(password===confirmpassword){
-              await axios.post("http://localhost:3001/user/signup", 
-              {username,password});
-              alert("Sign up completed, login to continue !")
-              navigate('/user/login')
-            } 
+            if(!password || !confirmpassword || !username){
+              alert("Enter all the fields !")
+              window.location.reload();
+            }
             else{
-              alert('Passwords not matching !')
-              window.location.reload()
-            }  
+              if(password===confirmpassword){
+                await axios.post("http://localhost:3001/user/signup", 
+                {username,password});
+                alert("Sign up completed, login to continue !")
+                navigate('/user/login')
+              } 
+              else{
+                alert('Passwords not matching !')
+                window.location.reload()
+              }  
+            } 
         }
         catch(err){
             console.log(err); 
@@ -58,7 +64,7 @@ export const Signup = () => {
           <Form.Control  type="password" placeholder="Re-enter password" name="password"  onChange = {onChangeConfirmPassword }/>
           </div>
         <div style={{marginRight:"30px"}}>
-        <Button variant="primary" type="submit">
+        <Button variant="light" type="submit">
           Submit
         </Button>
         </div>

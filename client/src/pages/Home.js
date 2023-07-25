@@ -11,6 +11,9 @@ export const Home = () => {
           if(typeof response.data === "string"){
             alert("Wine already saved !");
           }
+          else{
+            alert("Wine added to Favourites !");
+          }
         }
         catch(err){
           console.error(err);
@@ -32,17 +35,17 @@ export const Home = () => {
     fetchWineData();
   },[])
   if (!wines) {
-    return <div>Loading...</div>; // You can customize the loading state as needed
+    return <div>Loading...</div>; 
   }
   return (
     <>
     <div style={{/*backgroundColor: "#d19592", backgroundImage: "linear-gradient(to right, #B279A7 0%, #a5a4cb 74%)*/ backgroundColor: "#B279A7"}}>
-      <h1>Welcome to Wine Savvy</h1>
-      <div className="d-flex flex-wrap" style={{padding:"20px",justifyContent:"center" }}>
+      <h1 style={{marginTop:"10px"}}>Welcome to Wine Savvy</h1>
+      <div className="d-flex flex-wrap" style={{padding:"10px",justifyContent:"center" }}>
         {wines.map((wine) => (
           <Card key={wine._id} style={{width:"300px",height:"auto",margin:"20px",backgroundColor: "#BAA6D1"}}>
             <div className="d-flex justify-content-center">
-            <Card.Img variant="top" src={wine.imageUrl} style={{width:"100%",height:"200px",objectFit:"contain"}}/>
+            <Card.Img variant="top" src={wine.imageUrl} style={{width:"100%",height:"200px",objectFit:"contain",backgroundColor:"white"}}/>
             </div>
             <Card.Body>
               <Card.Title style={{fontSize:"22px",textAlign:"center",fontWeight:"bold",fontFamily:"'Vollkorn SC', serif"}}>{wine.name}</Card.Title>

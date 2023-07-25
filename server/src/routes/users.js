@@ -23,14 +23,14 @@ router.post("/login", async (req,res) =>{
     const user = await UserModel.findOne({username});
     console.log('Until this part ok');
     if(!user){
-        res.json({message: "No user with entered credentials exists."});
+        return res.json({message: "No user with entered credentials exists."});
     }
     const isPasswordValid = await bcrypt.compare(password,user.password);
     if(!isPasswordValid){
-       res.json({message: "Please login with valid username and password."});
+    return res.json({message: "Please login with valid username and password."});
     }
     const token = jwt.sign({id: user._id}, "winetasting");
-    res.json({token:token,userID:user._id});
+    return res.json({token:token,userID:user._id});
 
 });
 

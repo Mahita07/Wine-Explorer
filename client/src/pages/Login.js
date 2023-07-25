@@ -20,13 +20,27 @@ export const Login = () => {
     const onSubmit = async(event) =>{
         event.preventDefault();
         try{
-          const response = await axios.post("http://localhost:3001/user/login", 
-            {username,password});
-            console.log(response);
-            setCookies(["accessToken",response.data.token]);
-            window.localStorage.setItem("accessToken",response.data.token);
-            window.localStorage.setItem("userID",response.data.userID);
-            navigate('/user/home');
+            if(!username || !password){
+              alert("Enter all fields !");
+              window.location.reload();
+            }
+            else{
+              const response = await axios.post("http://localhost:3001/user/login", 
+              {username,password});
+              console.log(response);
+              if(typeof response.data.message==="string"){
+                alert("No user with entered credentials exists.");
+                window.location.reload();
+                return;
+              }
+              else{
+                setCookies(["accessToken",response.data.token]);
+                window.localStorage.setItem("accessToken",response.data.token);
+                window.localStorage.setItem("userID",response.data.userID);
+                navigate('/user/home');
+              }
+              
+            }
         }
         catch(err){
             console.log(err); 
@@ -54,7 +68,7 @@ export const Login = () => {
           <Form.Control  type="password" placeholder="Enter password" name="password"  onChange = {onChangePassword }/>
           </div>
         <div style={{marginRight:"30px"}}>
-        <Button variant="primary" type="submit">
+        <Button variant="light" type="submit">
           Submit
         </Button>
         </div>
